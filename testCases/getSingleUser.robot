@@ -8,6 +8,8 @@ ${user_id}        2
 
 *** Test Cases ***
 Test Get Request Single User
+    [Documentation]       Test Get Request Single User    
+    [Tags]                Regression
     Create Session    reqres    ${url}
     ${response} =    Get Request    reqres    /api/users/${user_id}
     Should Be Equal As Numbers    ${response.status_code}    200

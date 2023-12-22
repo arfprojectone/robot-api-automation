@@ -11,6 +11,8 @@ ${page_2}         2
 
 *** Test Cases ***
 Test Get Request List Users Page 1
+    [Documentation]       Test Get Request List Users Page 1  
+    [Tags]                Regression
     Create Session    reqres    ${url}
     ${response} =    Get Request    reqres    /api/users?page=${page_1}
     Should Be Equal As Numbers    ${response.status_code}    200
@@ -22,6 +24,8 @@ Test Get Request List Users Page 1
     # Delete All Sessions
 
 Test Get Request List Users Page 2
+    [Documentation]       Test Get Request List Users Page 2  
+    [Tags]                Regression
     ${response}=    GET      ${base_url}     params=page=${page_2}   expected_status=200
     log    ${response.json()}
     Should Be Equal As Strings    6  ${response.json()}[per_page]
