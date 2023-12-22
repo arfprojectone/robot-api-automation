@@ -1,17 +1,34 @@
 *** Settings ***
 Library    RequestsLibrary
+Library    Collections
 
 *** Variables ***
 ${url}            https://reqres.in
-${page}           2
+${page_1}         1
+
+${base_url}       https://reqres.in/api/users
+${page_2}         2
 
 *** Test Cases ***
-Get Request List Users
+Test Get Request List Users Page 1
     Create Session    reqres    ${url}
-    ${response} =    Get Request    reqres    /api/users?page=${page}
+    ${response} =    Get Request    reqres    /api/users?page=${page_1}
     Should Be Equal As Numbers    ${response.status_code}    200
     
-    Log To Console    Response:${response}
-    Log To Console    ${response.json()}
-    Set Suite Variable    ${response}    ${response}
-    Delete All Sessions
+    
+    # Log To Console    Response:${response}
+    # Log To Console    ${response.json()}
+    # Set Suite Variable    ${response}    ${response}
+    # Delete All Sessions
+
+Test Get Request List Users Page 2
+    ${response}=    GET      ${base_url}     params=page=${page_2}   expected_status=200
+    log    ${response.json()}
+    Should Be Equal As Strings    6  ${response.json()}[per_page]
+    Should Be Equal As Strings    12  ${response.json()}[total]
+    Should Be Equal As Strings    7  ${response.json()}[data][0][id]
+    
+    # Log To Console    Response:${response}
+    # Log To Console    ${response.json()}
+    # Set Suite Variable    ${response}    ${response}
+    # Delete All Sessions
