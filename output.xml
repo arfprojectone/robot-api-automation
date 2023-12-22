@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.11.4 on darwin)" generated="20231222 18:54:27.847" rpa="false" schemaversion="4">
+<suite id="s1" name="getListUsers &amp; getSingleUser">
+<suite id="s1-s1" name="getListUsers" source="/Users/arifkurniawan/PROJECT-ARF/robot-api-automation/testCases/getListUsers.robot">
+<test id="s1-s1-t1" name="Get Request List Users" line="9">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>reqres</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231222 18:54:27.912" level="INFO">Creating Session using : alias=reqres, url=https://reqres.in, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20231222 18:54:27.912" endtime="20231222 18:54:27.912"/>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>reqres</arg>
+<arg>/api/users?page=${page}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<msg timestamp="20231222 18:54:27.912" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg timestamp="20231222 18:54:28.037" level="INFO">GET Request : url=https://reqres.in/api/users?page=2 
+ path_url=/api/users?page=2 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231222 18:54:28.037" level="INFO">GET Response : url=https://reqres.in/api/users?page=2 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 22 Dec 2023 11:54:28 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1702374014&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=00X83e6WgzT%2Bv%2Ftd0FUWL3ne49Kv00s7s5V0ITbAd6A%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1702374014&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=00X83e6WgzT%2Bv%2Ftd0FUWL3ne49Kv00s7s5V0ITbAd6A%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '5938', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '83982b95bd48449f-SIN', 'Content-Encoding': 'br'} 
+ body={"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg timestamp="20231222 18:54:28.037" level="INFO">/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/urllib3/connectionpool.py:1056: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20231222 18:54:28.037" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231222 18:54:27.912" endtime="20231222 18:54:28.037"/>
+</kw>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20231222 18:54:28.038" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231222 18:54:28.037" endtime="20231222 18:54:28.038"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Response:${response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231222 18:54:28.038" endtime="20231222 18:54:28.038"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231222 18:54:28.038" endtime="20231222 18:54:28.039"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${response}</arg>
+<arg>${response}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20231222 18:54:28.039" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231222 18:54:28.039" endtime="20231222 18:54:28.039"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20231222 18:54:28.040" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20231222 18:54:28.040" endtime="20231222 18:54:28.040"/>
+</kw>
+<status status="PASS" starttime="20231222 18:54:27.911" endtime="20231222 18:54:28.040"/>
+</test>
+<status status="PASS" starttime="20231222 18:54:27.859" endtime="20231222 18:54:28.040"/>
+</suite>
+<suite id="s1-s2" name="getSingleUser" source="/Users/arifkurniawan/PROJECT-ARF/robot-api-automation/testCases/getSingleUser.robot">
+<test id="s1-s2-t1" name="Get Request Single User" line="9">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>reqres</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231222 18:54:28.043" level="INFO">Creating Session using : alias=reqres, url=https://reqres.in, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20231222 18:54:28.042" endtime="20231222 18:54:28.043"/>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>reqres</arg>
+<arg>/api/users/${user_id}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<msg timestamp="20231222 18:54:28.043" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg timestamp="20231222 18:54:28.125" level="INFO">GET Request : url=https://reqres.in/api/users/2 
+ path_url=/api/users/2 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231222 18:54:28.125" level="INFO">GET Response : url=https://reqres.in/api/users/2 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 22 Dec 2023 11:54:28 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1703244258&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=ofvRosBEl6SZBgdIvaxVJneRXqgm791oCde3Q846zO8%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1703244258&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=ofvRosBEl6SZBgdIvaxVJneRXqgm791oCde3Q846zO8%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"118-pbdwwFo9SKNhD3Lx5iHJyngpq00"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '1810', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '83982b9659f54673-SIN', 'Content-Encoding': 'br'} 
+ body={"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg timestamp="20231222 18:54:28.125" level="INFO">/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/urllib3/connectionpool.py:1056: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20231222 18:54:28.125" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231222 18:54:28.043" endtime="20231222 18:54:28.125"/>
+</kw>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20231222 18:54:28.126" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231222 18:54:28.125" endtime="20231222 18:54:28.126"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Response:${response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231222 18:54:28.126" endtime="20231222 18:54:28.126"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231222 18:54:28.126" endtime="20231222 18:54:28.126"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${response}</arg>
+<arg>${response}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20231222 18:54:28.127" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231222 18:54:28.126" endtime="20231222 18:54:28.127"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20231222 18:54:28.127" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20231222 18:54:28.127" endtime="20231222 18:54:28.127"/>
+</kw>
+<status status="PASS" starttime="20231222 18:54:28.042" endtime="20231222 18:54:28.127"/>
+</test>
+<status status="PASS" starttime="20231222 18:54:28.041" endtime="20231222 18:54:28.127"/>
+</suite>
+<status status="PASS" starttime="20231222 18:54:27.848" endtime="20231222 18:54:28.127"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="getListUsers &amp; getSingleUser">getListUsers &amp; getSingleUser</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="getListUsers">getListUsers &amp; getSingleUser.getListUsers</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2" name="getSingleUser">getListUsers &amp; getSingleUser.getSingleUser</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20231222 18:54:27.912" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg timestamp="20231222 18:54:28.043" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+</errors>
+</robot>
