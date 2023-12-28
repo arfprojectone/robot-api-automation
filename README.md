@@ -15,5 +15,5 @@ pip install robotframework-requests<br>
 single run              -> robot file_name.robot<br>
 multi run               -> robot path_folder/*.robot<br>
 all run                 -> robot path_folder<br>
-run with tags           -> robot --include Regression folder_name<br>
-exclude run with tags   -> robot --exclude Regression folder_name<br>
+run with tags           -> robot --include $Tags folder_name<br>
+exclude run with tags   -> robot --exclude $Tags folder_name<br>
