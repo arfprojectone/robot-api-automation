@@ -1,6 +1,5 @@
 *** Settings ***
-Library    RequestsLibrary
-Library    Collections
+Resource         ../utils/importer.resource
 
 *** Variables ***
 ${url}            https://reqres.in

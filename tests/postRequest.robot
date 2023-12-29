@@ -1,6 +1,5 @@
 *** Settings ***
-Library    RequestsLibrary
-Library    Collections
+Resource         ../utils/importer.resource
 
 *** Variables ***
 ${base_url}       https://reqres.in/api/users
